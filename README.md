@@ -39,3 +39,4 @@ npm run reset-db
 10. changeEventRoom - вместо roomId указан id (./graphql/resolvers/mutation.js)
 11. - Перед удалением проверять объект на существование. И перед добавлением юзера в список на то, нет ли его там. И перед добавлением комнаты/юзера на их существование. 
 12. Отсутствующая зависимость body-parser (./package.json)
+13. Неиспользуемый тип UserRoom (./graphql/typeDefs.js)
