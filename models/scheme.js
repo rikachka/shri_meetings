@@ -17,11 +17,11 @@ module.exports = function (sequelize) {
     title: Sequelize.STRING,
     dateStart: Sequelize.DATE,
     dateEnd: Sequelize.DATE
-  });
+  });    
 
-  Event.belongsToMany(User, { through: 'Events_Users' });
-  User.belongsToMany(Event, { through: 'Events_Users' });
-  Event.belongsTo(Room);
+  Event.User = Event.belongsToMany(User, { through: 'EventsUsers' });
+  User.Event = User.belongsToMany(Event, { through: 'EventsUsers' });
+  Event.Room = Event.belongsTo(Room);
 
   return {
     Room, Event, User

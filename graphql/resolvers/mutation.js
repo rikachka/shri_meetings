@@ -34,17 +34,15 @@ module.exports = {
     return models.Room.findById(id)
             .then(room => room.destroy());
   },
-
-  // Event
+    
   createEvent (root, { input, usersIds, roomId }, context) {
     return models.Event.create(input)
             .then(event => {
               event.setRoom(roomId);
-
-              return event.setUsers(usersIds)
-                    .then(() => event);
+              event.setUsers(usersIds);
+              return event;
             });
-  },
+  },    
 
   updateEvent (root, { id, input }, context) {
     return models.Event.findById(id)
@@ -61,10 +59,19 @@ module.exports = {
             });
   },
 
+  addUserToEvent (root, { id, userId }, context) {
+    return models.Event.findById(id)
+            .then(event => {
+              event.addUser(userId);
+              return event;
+            });
+  },
+
   changeEventRoom (root, { id, roomId }, context) {
     return models.Event.findById(id)
             .then(event => {
-              event.setRoom(id);
+              event.setRoom(roomId);
+              return event;
             });
   },
 
